@@ -1,5 +1,6 @@
 $(document).ready(function(){
   $('#container').masonry({
-    itemSelector : '.quote'
+    itemSelector : '.quote',
+    isFitWidth: true
   });
 });

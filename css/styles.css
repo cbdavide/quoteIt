@@ -13,26 +13,14 @@ body {
   overflow: hidden;
 }
 
-.wrapper {
-  display: flex;
-  justify-content: center;
-  /*align-content: center;*/
-}
-
-.container {
-  align-self: center;
-  width: 95%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;
+#container {
+  margin: 0 auto;
 }
 
 .quote {
-  margin-top: 16px;
-  margin-right: 16px;
+  margin: 16px 16px 0px 16px;
   padding: 16px;
-  max-width: 300px;
+  width: 300px;
   min-width: 250px;
 }
 
