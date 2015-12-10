@@ -13,19 +13,31 @@ body {
   overflow: hidden;
 }
 
+.wrapper {
+  display: flex;
+  justify-content: center;
+  /*align-content: center;*/
+}
+
 .container {
-  position: absolute;
+  align-self: center;
+  width: 95%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .quote {
-  background: rgba(1,177,174,0.5);
-  margin: 16px;
+  margin-top: 16px;
+  margin-right: 16px;
   padding: 16px;
-  max-width: 500px;
+  max-width: 300px;
+  min-width: 250px;
 }
 
 .text {
-  font-weight: normal;
+  font-weight: bold;
 }
 
 .author {
@@ -37,4 +49,19 @@ body {
 
 .author::before {
   content: '—';
+}
+
+.kblue {
+  background: rgba(1,177,174,0.7);
+}
+
+.kpink {
+  background: rgba(255,112,112,0.7);
+}
+.kpurple {
+  background: rgba(31,42,68,0.7);
+}
+
+.okblue {
+  background: rgba(64,149,191,0.7);
 }
