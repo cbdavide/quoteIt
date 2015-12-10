@@ -22,6 +22,7 @@ body {
   padding: 16px;
   width: 300px;
   min-width: 250px;
+  /*display: none;*/
 }
 
 .text {
