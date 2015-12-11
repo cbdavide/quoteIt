@@ -13,16 +13,26 @@ body {
   overflow: hidden;
 }
 
-#container {
+.container {
+  width: 95%;
   margin: 0 auto;
 }
 
+.content {
+  -webkit-column-count: 3;
+  -webkit-column-gap: 16px;
+
+  -moz-column-count: 3;
+  -moz-column-gap: 16px;
+
+  width: 100%;
+}
+
 .quote {
-  margin: 16px 16px 0px 16px;
+  display: inline-block;
+  width: 90%;
+  margin-top: 16px;
   padding: 16px;
-  width: 300px;
-  min-width: 250px;
-  /*display: none;*/
 }
 
 .text {
@@ -53,4 +63,33 @@ body {
 
 .okblue {
   background: rgba(64,149,191,0.7);
+}
+
+
+@media only screen and (max-width: 640px) {
+  .content {
+    -webkit-column-count: 1;
+    -webkit-column-gap: 0px;
+  }
+}
+
+@media only screen and (min-width: 641px) {
+  .content {
+    -webkit-column-count: 2;
+    -webkit-column-gap: 16px;
+  }
+}
+
+@media only screen and (min-width: 1279px) {
+  .content {
+    -webkit-column-count: 3;
+    -webkit-column-gap: 16px;
+  }
+}
+
+@media only screen and (min-width: 1919px) {
+  .content {
+    -webkit-column-count: 4;
+    -webkit-column-gap: 16px;
+  }
 }
