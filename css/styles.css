@@ -1,5 +1,6 @@
 html{
   background-image: url(../img/b1.jpg);
+  background-attachment: fixed;
   background-size: 100vw 100vh;
 }
 
@@ -10,7 +11,6 @@ body {
   font-size: 16px;
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
 }
 
 .container {
@@ -50,26 +50,23 @@ body {
   content: '—';
 }
 
-.kblue {
-  background: rgba(1,177,174,0.7);
+.c1 {
+  background: rgba(0,153,255,0.7);
 }
 
-.kpink {
-  background: rgba(255,112,112,0.7);
+.c2 {
+  background: rgba(225,27,25,0.7);
 }
-.kpurple {
-  background: rgba(31,42,68,0.7);
+.c3 {
+  background: rgba(204,203,20,0.7);
 }
-
-.okblue {
-  background: rgba(64,149,191,0.7);
-}
-
 
 @media only screen and (max-width: 640px) {
   .content {
     -webkit-column-count: 1;
     -webkit-column-gap: 0px;
+    -moz-column-count: 1;
+    -moz-column-gap: 0px;
   }
 }
 
@@ -77,6 +74,8 @@ body {
   .content {
     -webkit-column-count: 2;
     -webkit-column-gap: 16px;
+    -moz-column-count: 2;
+    -moz-column-gap: 16px;
   }
 }
 
@@ -84,6 +83,8 @@ body {
   .content {
     -webkit-column-count: 3;
     -webkit-column-gap: 16px;
+    -moz-column-count: 3;
+    -moz-column-gap: 16px;
   }
 }
 
@@ -91,5 +92,7 @@ body {
   .content {
     -webkit-column-count: 4;
     -webkit-column-gap: 16px;
+    -moz-column-count: 4;
+    -moz-column-gap: 16px;
   }
 }

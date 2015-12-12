@@ -1,16 +1,14 @@
 var $container = $('#container');
 
-//View
-var Element = function( tag, className, value ) {
-  this.tag = tag;
-  this.className = className;
-  this.value = value;
-}
-
-Element.prototype.render = function( child ) {
-  return (
-    `<${this.tag} class="${this.className}"> \n ${this.value||child} \n </${this.tag}>`
-  );
+var ViewQuote = function( quote, color ) {
+  return `<div class="quote ${color}">
+  <span class="text">
+    ${quote.text}
+  </span>
+  <span class="author">
+    ${quote.author}
+  </span>
+</div>`;
 };
 
 //Model
@@ -29,10 +27,9 @@ var quotes = [
   new Quote( 'Without music, life would be a mistake.', ' Friedrich Nietzsche' ),
 ];
 
-
-var author = new Element( 'span', 'author', 'David Sayward' );
-var text = new Element ( 'span', 'text', 'Don\'t wait for the perfect moment, take the moment and make it perfect.' );
-var child = text.render() + author.render();
-var quoti = new Element( 'div', 'quote' );
-$container.append( quoti.render( child ) );
-console.log( quoti.render( child ) );
+var colores = ['c1', 'c2', 'c3'];
+var i=0;
+$('body').click(function() {
+  $container.prepend( ViewQuote( quotes[1+i], 'c1' ) );
+  i++;
+})
