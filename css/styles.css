@@ -1,12 +1,11 @@
 html{
-  background-image: url(../img/b1.jpg);
+  background: url(../img/b2.jpg) red;
   background-attachment: fixed;
   background-size: 100vw 100vh;
 }
 
 body {
-  background: rgba(34,34,34,0.2);
-  background-attachment: fixed;
+  opacity: none;
   color: white;
   font-family: 'Merriweather', serif;
   font-size: 16px;
