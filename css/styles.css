@@ -6,11 +6,13 @@ html{
 
 body {
   background: rgba(34,34,34,0.2);
+  background-attachment: fixed;
   color: white;
   font-family: 'Merriweather', serif;
   font-size: 16px;
   width: 100vw;
   height: 100vh;
+  overflow-x: hidden;
 }
 
 .container {
@@ -29,6 +31,7 @@ body {
 }
 
 .quote {
+  background: rgba(0,153,255,0.7);
   display: inline-block;
   width: 90%;
   margin-top: 16px;
@@ -48,17 +51,6 @@ body {
 
 .author::before {
   content: '—';
-}
-
-.c1 {
-  background: rgba(0,153,255,0.7);
-}
-
-.c2 {
-  background: rgba(225,27,25,0.7);
-}
-.c3 {
-  background: rgba(204,203,20,0.7);
 }
 
 @media only screen and (max-width: 640px) {
