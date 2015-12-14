@@ -54,8 +54,20 @@
   $('body').click(function() {
     $container.prepend( ViewQuote( quotes[app.getIndex()] ) );
     app.incrementIndex();
-    console.log(app.getIndex());
+
+    $.ajax({
+      url: 'http://api.forismatic.com/api/1.0/',
+      jsonp: 'jsonp',
+      dataType: 'jsonp',
+      data : {
+        method: 'getQuote',
+        lang: 'en',
+        format: 'jsonp'
+      }
+    }).done(function(data){
+      console.log(JSON.stringify(data));
+    });
+
   });
-
-
+  
 })();
