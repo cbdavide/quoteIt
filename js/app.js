@@ -1,6 +1,7 @@
 (function(){
 
-  var $container = $('#container');
+  var $container = $('#container'),
+      $placeholder = $('#placeholder');
   var quotes = [];
 
   var ViewQuote = function( text, author ) {
@@ -13,6 +14,10 @@
     </span>
   </div>`;
   };
+
+  $('body').one( 'click', function() {
+    $placeholder.remove();
+  } );
 
   $('body').click(function() {
     $.ajax({
