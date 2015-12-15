@@ -6,6 +6,11 @@
       $placeholder = $('#placeholder');
   var quotes = [];
 
+  $container.masonry({
+    itemSelector: '.quote',
+    gutter: 15
+  });
+
   var ViewQuote = function ViewQuote(text, author) {
     return '<div class="quote">\n    <span class="text">\n      ' + text + '\n    </span>\n    <span class="author">\n      ' + author + '\n    </span>\n  </div>';
   };
@@ -27,6 +32,8 @@
     }).done(function (response) {
 
       $container.prepend(ViewQuote(response.quoteText, response.quoteAuthor));
+      $container.masonry('reloadItems');
+      $container.masonry('layout');
 
       quotes.push(response);
     }).fail(function (err) {
