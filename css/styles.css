@@ -34,8 +34,8 @@ body {
   width: 90%;
   margin-top: 16px;
   padding: 16px;
-  animation: 3s ease 0s fade-in;
-  -webkit-animation: 3s ease 0s fade-in;
+  animation: 2s ease 0s fade-in;
+  -webkit-animation: 2s ease 0s fade-in;
 }
 
 .text {
