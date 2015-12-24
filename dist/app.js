@@ -37,7 +37,7 @@
 
       quotes.push(response);
     }).fail(function (err) {
-      console.log('err');
+      console.log(err);
     });
   });
 })();
