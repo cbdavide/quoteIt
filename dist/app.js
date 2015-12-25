@@ -12,50 +12,92 @@ localStorage.quotes = JSON.stringify(quotis);
 
 (function () {
 
-  var $container = $('#container'),
-      $placeholder = $('#placeholder');
-  var quotes = [];
+  var Quote = React.createClass({
+    displayName: 'Quote',
 
-  var ViewQuote = function ViewQuote(text, author) {
-    return '<div class="quote">\n    <span class="text">\n      ' + text + '\n    </span>\n    <span class="author">\n      ' + author + '\n    </span>\n  </div>';
-  };
+    render: function render() {
 
-  //Load quotes
-  if (localStorage.quotes) {
-    $placeholder.remove();
-    quotes = JSON.parse(localStorage.getItem('quotes'));
-
-    //Print quotes
-    quotes.forEach(function (val) {
-      $container.append(ViewQuote(val.quoteText, val.quoteAuthor));
-    });
-  }
-
-  $('body').one('click', function () {
-    $placeholder.remove();
+      return React.createElement(
+        'div',
+        { className: 'quote' },
+        React.createElement(
+          'span',
+          { className: 'text' },
+          this.props.text
+        ),
+        React.createElement(
+          'span',
+          { className: 'author' },
+          this.props.author
+        )
+      );
+    }
   });
 
-  $('body').click(function () {
-    $.ajax({
-      url: 'http://api.forismatic.com/api/1.0/',
-      jsonp: 'jsonp',
-      dataType: 'jsonp',
-      data: {
-        method: 'getQuote',
-        lang: 'en',
-        format: 'jsonp'
+  var App = React.createClass({
+    displayName: 'App',
+
+    getInitialState: function getInitialState() {
+      var temp_quotes = [];
+
+      if (localStorage.quotes) {
+        temp_quotes = JSON.parse(localStorage.getItem('quotes'));
       }
-    }).done(function (response) {
+      return {
+        quotes: temp_quotes
+      };
+    },
 
-      $container.prepend(ViewQuote(response.quoteText, response.quoteAuthor));
+    callQuote: function callQuote() {
+      console.log('here');
+      var suppa = this;
+      $.ajax({
+        url: 'http://api.forismatic.com/api/1.0/',
+        jsonp: 'jsonp',
+        dataType: 'jsonp',
+        data: {
+          method: 'getQuote',
+          lang: 'en',
+          format: 'jsonp'
+        }
+      }).done(function (data) {
+        suppa.setState(function (old) {
+          old.quotes.unshift({
+            quoteText: data.quoteText,
+            quoteAuthor: data.quoteAuthor
+          });
+          return {
+            quotes: old.quotes
+          };
+        });
+      }).fail(function (err) {
+        console.log('Err -> Quote did not arrive :c');
+      });
+    },
 
-      quotes.push(response);
-    }).fail(function (err) {
-      console.log('err');
-    });
+    render: function render() {
+
+      if (this.state.quotes === []) {
+        return React.createElement(
+          'div',
+          null,
+          React.createElement(
+            'span',
+            { className: 'placeholder' },
+            'Click for a random quote.'
+          )
+        );
+      } else {
+        return React.createElement(
+          'div',
+          { className: 'content', onClick: this.callQuote.bind(this) },
+          this.state.quotes.map(function (val) {
+            return React.createElement(Quote, { text: val.quoteText, author: val.quoteAuthor });
+          })
+        );
+      }
+    }
   });
 
-  $('.quote').click(function () {
-    console.log('here');
-  });
+  ReactDOM.render(React.createElement(App, null), document.getElementById('continer'));
 })();
