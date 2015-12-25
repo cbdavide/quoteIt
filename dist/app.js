@@ -1,5 +1,15 @@
 'use strict';
 
+var quotis = [{
+  'quoteText': 'Quote1',
+  'quoteAuthor': 'Author 1'
+}, {
+  'quoteText': 'Quote2',
+  'quoteAuthor': 'Author 2'
+}];
+
+localStorage.quotes = JSON.stringify(quotis);
+
 (function () {
 
   var $container = $('#container'),
@@ -9,6 +19,17 @@
   var ViewQuote = function ViewQuote(text, author) {
     return '<div class="quote">\n    <span class="text">\n      ' + text + '\n    </span>\n    <span class="author">\n      ' + author + '\n    </span>\n  </div>';
   };
+
+  //Load quotes
+  if (localStorage.quotes) {
+    $placeholder.remove();
+    quotes = JSON.parse(localStorage.getItem('quotes'));
+
+    //Print quotes
+    quotes.forEach(function (val) {
+      $container.append(ViewQuote(val.quoteText, val.quoteAuthor));
+    });
+  }
 
   $('body').one('click', function () {
     $placeholder.remove();
@@ -32,5 +53,9 @@
     }).fail(function (err) {
       console.log('err');
     });
+  });
+
+  $('.quote').click(function () {
+    console.log('here');
   });
 })();

@@ -1,3 +1,16 @@
+var quotis = [
+  {
+    'quoteText': 'Quote1',
+    'quoteAuthor': 'Author 1'
+  },
+  {
+    'quoteText': 'Quote2',
+    'quoteAuthor': 'Author 2'
+  }
+]
+
+localStorage.quotes = JSON.stringify(quotis);
+
 (function(){
 
   var $container = $('#container'),
@@ -14,6 +27,17 @@
     </span>
   </div>`;
   };
+
+  //Load quotes
+  if( localStorage.quotes ) {
+    $placeholder.remove();
+    quotes = JSON.parse( localStorage.getItem( 'quotes' ) );
+
+    //Print quotes
+    quotes.forEach( function( val ) {
+      $container.append( ViewQuote( val.quoteText, val.quoteAuthor ) )
+    });
+  }
 
   $('body').one( 'click', function() {
     $placeholder.remove();
@@ -39,6 +63,10 @@
       console.log('err');
     });
 
+  });
+
+  $('.quote').click(function(){
+    console.log('here');
   });
 
 })();
