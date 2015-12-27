@@ -1,9 +1,11 @@
 'use strict';
 
 var quotis = [{
+  'id': 'id1',
   'quoteText': 'Quote1',
   'quoteAuthor': 'Author 1'
 }, {
+  'id': 'id2',
   'quoteText': 'Quote2',
   'quoteAuthor': 'Author 2'
 }];
@@ -19,7 +21,7 @@ localStorage.quotes = JSON.stringify(quotis);
 
       return React.createElement(
         'div',
-        { className: 'quote', onClick: this.props.save.bind(null, this.props.text, this.props.author) },
+        { className: 'quote', onClick: this.props.save.bind(null, this.props.text, this.props.author, this.props.id) },
         React.createElement(
           'span',
           { className: 'text' },
@@ -68,6 +70,7 @@ localStorage.quotes = JSON.stringify(quotis);
       }).done(function (data) {
         _this.setState(function (old) {
           old.quotes.unshift({
+            id: data.quoteLink,
             quoteText: data.quoteText,
             quoteAuthor: data.quoteAuthor
           });
@@ -80,14 +83,33 @@ localStorage.quotes = JSON.stringify(quotis);
       });
     },
 
-    saveQuote: function saveQuote(text, author) {
-      console.log('here');
-      var quotes = JSON.parse(localStorage.quotes) || [];
-      quotes.unshift({
-        quoteText: text,
-        quoteAuthor: author
+    /**
+     * Verify if the quote is already saved.
+     *
+     * @param quotes - Array of quotes.
+     * @param id - Id of the quote to look for.
+     * @return {Boolean} - Quote exist or not.
+     */
+    isSaved: function isSaved(quotes, id) {
+      var cond = false;
+      quotes.forEach(function (element) {
+        if (element.id === id) cond = true;
       });
-      localStorage.setItem('quotes', JSON.stringify(quotes));
+      return cond;
+    },
+
+    saveQuote: function saveQuote(text, author, id) {
+      var quotes = JSON.parse(localStorage.quotes) || [];
+      if (!this.isSaved(quotes, id)) {
+        quotes.unshift({
+          id: id,
+          quoteText: text,
+          quoteAuthor: author
+        });
+        localStorage.setItem('quotes', JSON.stringify(quotes));
+      } else {
+        console.log('This quote is alrady saved.');
+      }
     },
 
     render: function render() {
@@ -111,6 +133,7 @@ localStorage.quotes = JSON.stringify(quotis);
             return React.createElement(Quote, {
               text: val.quoteText,
               author: val.quoteAuthor,
+              id: val.id,
               save: _this2.saveQuote
             });
           })
