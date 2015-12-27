@@ -18,7 +18,7 @@ localStorage.quotes = JSON.stringify(quotis);
     render: function() {
 
       return (
-        <div className="quote">
+        <div className="quote" onClick={this.props.save.bind(null, this.props.text, this.props.author)}>
           <span className="text">
             {this.props.text}
           </span>
@@ -47,7 +47,6 @@ localStorage.quotes = JSON.stringify(quotis);
     },
 
     callQuote: function() {
-      var suppa = this;
       $.ajax({
         url: 'http://api.forismatic.com/api/1.0/',
         jsonp: 'jsonp',
@@ -57,8 +56,8 @@ localStorage.quotes = JSON.stringify(quotis);
           lang: 'en',
           format: 'jsonp'
         }
-      }).done(function( data ){
-        suppa.setState( function ( old ) {
+      }).done(( data ) => {
+        this.setState( function ( old ) {
           old.quotes.unshift( {
             quoteText: data.quoteText,
             quoteAuthor: data.quoteAuthor
@@ -70,6 +69,16 @@ localStorage.quotes = JSON.stringify(quotis);
       }).fail(function(err) {
         console.log('Err -> Quote did not arrive :c');
       });
+    },
+
+    saveQuote: function( text, author ) {
+      console.log('here');
+      var quotes = JSON.parse( localStorage.quotes ) || [];
+      quotes.unshift({
+        quoteText: text,
+        quoteAuthor: author
+      });
+      localStorage.setItem( 'quotes', JSON.stringify( quotes ) );
     },
 
     render: function() {
@@ -85,9 +94,13 @@ localStorage.quotes = JSON.stringify(quotis);
       } else {
         return (
           <div className="content" onClick={this.callQuote.bind(this)}>
-            {this.state.quotes.map(function( val ){
+            {this.state.quotes.map( ( val ) => {
               return (
-                <Quote text={val.quoteText} author= {val.quoteAuthor} />
+                <Quote
+                  text={val.quoteText}
+                  author={val.quoteAuthor}
+                  save = {this.saveQuote}
+                />
               )
             })}
           </div>

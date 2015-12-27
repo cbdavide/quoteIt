@@ -19,7 +19,7 @@ localStorage.quotes = JSON.stringify(quotis);
 
       return React.createElement(
         'div',
-        { className: 'quote' },
+        { className: 'quote', onClick: this.props.save.bind(null, this.props.text, this.props.author) },
         React.createElement(
           'span',
           { className: 'text' },
@@ -54,7 +54,8 @@ localStorage.quotes = JSON.stringify(quotis);
     },
 
     callQuote: function callQuote() {
-      var suppa = this;
+      var _this = this;
+
       $.ajax({
         url: 'http://api.forismatic.com/api/1.0/',
         jsonp: 'jsonp',
@@ -65,8 +66,8 @@ localStorage.quotes = JSON.stringify(quotis);
           format: 'jsonp'
         }
       }).done(function (data) {
-        suppa.setState(function (old) {
-          old.quotes.push({
+        _this.setState(function (old) {
+          old.quotes.unshift({
             quoteText: data.quoteText,
             quoteAuthor: data.quoteAuthor
           });
@@ -79,7 +80,18 @@ localStorage.quotes = JSON.stringify(quotis);
       });
     },
 
+    saveQuote: function saveQuote(text, author) {
+      console.log('here');
+      var quotes = JSON.parse(localStorage.quotes) || [];
+      quotes.unshift({
+        quoteText: text,
+        quoteAuthor: author
+      });
+      localStorage.setItem('quotes', JSON.stringify(quotes));
+    },
+
     render: function render() {
+      var _this2 = this;
 
       if (this.state.quotes === []) {
         return React.createElement(
@@ -96,7 +108,11 @@ localStorage.quotes = JSON.stringify(quotis);
           'div',
           { className: 'content', onClick: this.callQuote.bind(this) },
           this.state.quotes.map(function (val) {
-            return React.createElement(Quote, { text: val.quoteText, author: val.quoteAuthor });
+            return React.createElement(Quote, {
+              text: val.quoteText,
+              author: val.quoteAuthor,
+              save: _this2.saveQuote
+            });
           })
         );
       }
