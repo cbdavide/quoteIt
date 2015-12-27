@@ -26,9 +26,14 @@ localStorage.quotes = JSON.stringify(quotis);
           this.props.text
         ),
         React.createElement(
-          'span',
-          { className: 'author' },
-          this.props.author
+          'div',
+          { className: 'info icon-star' },
+          React.createElement(
+            'span',
+            { className: 'author' },
+            this.props.author
+          ),
+          React.createElement('span', { className: 'fav' })
         )
       );
     }
@@ -49,7 +54,6 @@ localStorage.quotes = JSON.stringify(quotis);
     },
 
     callQuote: function callQuote() {
-      console.log('here');
       var suppa = this;
       $.ajax({
         url: 'http://api.forismatic.com/api/1.0/',
@@ -62,7 +66,7 @@ localStorage.quotes = JSON.stringify(quotis);
         }
       }).done(function (data) {
         suppa.setState(function (old) {
-          old.quotes.unshift({
+          old.quotes.push({
             quoteText: data.quoteText,
             quoteAuthor: data.quoteAuthor
           });

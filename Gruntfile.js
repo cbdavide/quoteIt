@@ -15,7 +15,7 @@ module.exports = function( grunt ) {
     cssmin: {
       dist: {
         files: {
-          'dist/styles.css': ['css/*.css']
+          'dist/styles.css': ['css/fonts.css', 'css/normalize.css', 'css/styles.css']
         }
       }
     }

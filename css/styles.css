@@ -33,20 +33,27 @@ body {
   display: inline-block;
   width: 90%;
   margin-top: 16px;
-  padding: 16px;
+  padding: 16px 16px 8px 16px;
   animation: 2s ease 0s fade-in;
-  -webkit-animation: 2s ease 0s fade-in;
+  /*-webkit-animation: 2s ease 0s fade-in;*/
 }
 
 .text {
   font-weight: bold;
 }
 
+.info {
+  margin-top: 10px;
+}
+
+.fav {
+  margin-left: 10px;
+}
+
 .author {
   font-weight: bold;
-  margin: 8px;
-  display: block;
-  text-align: right;
+  margin: 0px 8px 8px 8px;
+  float: right;
 }
 
 .author::before {

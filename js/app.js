@@ -22,9 +22,12 @@ localStorage.quotes = JSON.stringify(quotis);
           <span className="text">
             {this.props.text}
           </span>
-          <span className="author">
-            {this.props.author}
-          </span>
+          <div className="info icon-star">
+            <span className="author">
+              {this.props.author}
+            </span>
+            <span className="fav"></span>
+          </div>
         </div>
       );
     }
@@ -44,7 +47,6 @@ localStorage.quotes = JSON.stringify(quotis);
     },
 
     callQuote: function() {
-      console.log('here');
       var suppa = this;
       $.ajax({
         url: 'http://api.forismatic.com/api/1.0/',
