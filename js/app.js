@@ -1,3 +1,5 @@
+var QuoteModel = require( './model' );
+
 var quotis = [
   {
     'id': 'id1',

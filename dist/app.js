@@ -1,4 +1,7 @@
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict';
+
+var QuoteModel = require('./model');
 
 var quotis = [{
   'id': 'id1',
@@ -144,3 +147,45 @@ localStorage.quotes = JSON.stringify(quotis);
 
   ReactDOM.render(React.createElement(App, null), document.getElementById('continer'));
 })();
+
+},{"./model":2}],2:[function(require,module,exports){
+"use strict";
+
+var QuoteModel = function QuoteModel() {
+
+  var model = JSON.parse(localStorage.quotes) || [];
+
+  this.updateModel = function () {
+    localStorage.quotes = JSON.stringify(model);
+  };
+
+  this.quoteIndex = function (id) {
+    for (var i = 0; i < model.length; i++) {
+      if (model[i].id == id) return i;
+    }
+    return -1;
+  };
+
+  this.getQuotes = function () {
+    return model;
+  };
+
+  this.isSaved = function (id) {
+    for (var i = 0; i < model.length; i++) {
+      if (model[i].id === id) return true;
+    }
+    return false;
+  }, this.saveQuote = function (quote) {
+    model.unshift(quote);
+    updateModel();
+  };
+
+  this.removeQuote = function (id) {
+    model.splice(quoteIndex(id), 1);
+    updateModel();
+  };
+};
+
+module.exports = QuoteModel;
+
+},{}]},{},[1]);
