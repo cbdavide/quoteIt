@@ -2,12 +2,13 @@ module.exports = function( grunt ) {
 
   grunt.initConfig({
 
-    babel: {
-      options: {
-      },
+    browserify: {
       dist: {
+        options: {
+          transform: ["babelify"]
+        },
         files: {
-          "dist/app.js": "js/app.js"
+          "dist/app.js" : "js/app.js"
         }
       }
     },
@@ -23,8 +24,8 @@ module.exports = function( grunt ) {
   });
 
   grunt.loadNpmTasks("grunt-contrib-cssmin");
-  grunt.loadNpmTasks("grunt-babel");
-  grunt.registerTask("default",["babel", "cssmin"]);
+  grunt.loadNpmTasks("grunt-browserify");
+  grunt.registerTask("default",["browserify", "cssmin"]);
 
 
 }
