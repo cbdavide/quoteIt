@@ -13,19 +13,29 @@ body {
   overflow-x: hidden;
 }
 
-.container {
-  width: 95%;
-  margin: 0 auto;
+.header {
+  position: fixed;
+  width: 100%;
+  background: rgba(0,0,0,0.8);
+}
+
+.add {
+  background: rgb(0,153,255);
+  float: right;
+  padding: 10px 16px;
 }
 
 .content {
+  width: 95%;
+  margin: 0 auto;
+  padding-top: 30px;
   -webkit-column-count: 3;
   -webkit-column-gap: 16px;
 
   -moz-column-count: 3;
   -moz-column-gap: 16px;
 
-  width: 100%;
+  /*width: 100%;*/
 }
 
 .quote {
