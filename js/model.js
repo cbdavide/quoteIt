@@ -1,41 +1,48 @@
 var QuoteModel = function( ) {
 
-  var model = JSON.parse( localStorage.quotes ) || [];
+  return {
 
-  this.updateModel = function() {
-    localStorage.quotes = JSON.stringify( model );
-  };
+    updateModel: function( quotes ) {
+      localStorage.quotes = JSON.stringify( quotes );
+    },
 
-  this.quoteIndex = function( id ) {
-    for(var i=0; i<model.length; i++) {
-      if( model[i].id == id )
-        return i;
+    quoteIndex: function( id ) {
+      let model = JSON.parse(localStorage.quotes);
+
+      for(var i=0; i<model.length; i++) {
+        if( model[i].id == id )
+          return i;
+      }
+      return -1;
+    },
+
+    getQuotes: function() {
+      return JSON.parse(localStorage.quotes);;
+    },
+
+    isSaved: function( id ) {
+      let model = JSON.parse(localStorage.quotes);
+
+      for(var i=0; i<model.length; i++) {
+        if( model[i].id === id ){
+          return true;
+        }
+      }
+      return false;
+    },
+
+    saveQuote: function( quote ) {
+      let model = JSON.parse(localStorage.quotes);
+      model.unshift( quote );
+      this.updateModel( model );
+    },
+
+    removeQuote: function( id ) {
+      let model = JSON.parse(localStorage.quotes);
+      model.splice( this.quoteIndex( id ), 1 );
+      this.updateModel( model );
     }
-    return -1;
   };
-
-  this.getQuotes = function() {
-    return model;
-  };
-
-  this.isSaved = function( id ) {
-    for(var i=0; i<model.length; i++) {
-      if( model[i].id === id )
-        return true;
-    }
-    return false;
-  },
-
-  this.saveQuote = function( quote ) {
-    model.unshift( quote );
-    updateModel();
-  };
-
-  this.removeQuote = function( id ) {
-    model.splice( quoteIndex( id ), 1 );
-    updateModel();
-  };
-
 }
 
 module.exports = QuoteModel;
