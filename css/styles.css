@@ -13,6 +13,10 @@ body {
   overflow-x: hidden;
 }
 
+.hidden {
+  display: none;
+}
+
 .header {
   position: fixed;
   width: 100%;
@@ -23,6 +27,7 @@ body {
   background: rgb(0,153,255);
   float: right;
   padding: 10px 16px;
+  cursor: pointer;
 }
 
 .content {
@@ -39,31 +44,30 @@ body {
 }
 
 .quote {
+  cursor: pointer;
   background: rgba(0,153,255,0.7);
   display: inline-block;
   width: 90%;
   margin-top: 16px;
-  padding: 16px 16px 8px 16px;
-  animation: 2s ease 0s fade-in;
+  /*animation: 2s ease 0s fade-in;*/
   /*-webkit-animation: 2s ease 0s fade-in;*/
 }
 
 .text {
   font-weight: bold;
-}
-
-.info {
-  margin-top: 10px;
+  margin: 20px 14px 0px 14px;
 }
 
 .fav {
-  margin-left: 10px;
+  float: right;
+  margin: 10px;
 }
 
 .author {
+  display: block;
+  text-align: right;
   font-weight: bold;
-  margin: 0px 8px 8px 8px;
-  float: right;
+  margin: 16px;
 }
 
 .author::before {
