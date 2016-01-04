@@ -66,39 +66,27 @@ var Main = React.createClass({
   render: function render() {
     var _this2 = this;
 
-    if (this.state.quotes === []) {
-      return React.createElement(
-        'div',
-        null,
-        React.createElement(
-          'span',
-          { className: 'placeholder' },
-          'Click for a random quote.'
-        )
-      );
-    } else {
-      return React.createElement(
-        'div',
-        null,
-        React.createElement(
-          'header',
-          { className: 'header' },
-          React.createElement('span', { className: 'add icon-add', onClick: this.callQuote.bind(this) })
-        ),
-        React.createElement(
-          'div',
-          { className: 'content' },
-          this.state.quotes.map(function (val) {
-            return React.createElement(QuoteView, {
-              text: val.quoteText,
-              author: val.quoteAuthor,
-              id: val.id,
-              save: _this2.saveQuote
-            });
-          })
-        )
-      );
-    }
+    return React.createElement(
+      'div',
+      null,
+      React.createElement(
+        'header',
+        { className: 'header' },
+        React.createElement('span', { className: 'add icon-add', onClick: this.callQuote.bind(this) })
+      ),
+      React.createElement(
+        'section',
+        { className: 'content' },
+        this.state.quotes.map(function (val) {
+          return React.createElement(QuoteView, {
+            text: val.quoteText,
+            author: val.quoteAuthor,
+            id: val.id,
+            save: _this2.saveQuote
+          });
+        })
+      )
+    );
   }
 });
 

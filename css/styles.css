@@ -74,16 +74,6 @@ body {
   content: '—';
 }
 
-.placeholder {
-  position: absolute;
-  top: 45%;
-  width: 100%;
-  font-size: 2em;
-  font-weight: bold;
-  text-align: center;
-  opacity: 0.6;
-}
-
 @media only screen and (max-width: 640px) {
   .content {
     -webkit-column-count: 1;

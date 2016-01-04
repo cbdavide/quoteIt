@@ -53,35 +53,25 @@ var Main = React.createClass({
 
   render: function() {
 
-    if(this.state.quotes === []) {
-      return (
-        <div>
-          <span className="placeholder">
-            Click for a random quote.
-          </span>
-        </div>
-      );
-    } else {
-      return (
-        <div>
-          <header className="header">
-            <span className="add icon-add" onClick={this.callQuote.bind(this)}></span>
-          </header>
-          <div className="content">
-            {this.state.quotes.map( ( val ) => {
-              return (
-                <QuoteView
-                  text={val.quoteText}
-                  author={val.quoteAuthor}
-                  id={val.id}
-                  save = {this.saveQuote}
-                />
-              )
-            })}
-          </div>
-        </div>
-      );
-    }
+    return (
+      <div>
+        <header className="header">
+          <span className="add icon-add" onClick={this.callQuote.bind(this)}></span>
+        </header>
+        <section className="content">
+          {this.state.quotes.map( ( val ) => {
+            return (
+              <QuoteView
+                text={val.quoteText}
+                author={val.quoteAuthor}
+                id={val.id}
+                save = {this.saveQuote}
+              />
+            )
+          })}
+        </section>
+      </div>
+    );
   }
 });
 
