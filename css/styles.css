@@ -47,7 +47,7 @@ body {
   cursor: pointer;
   background: rgba(0,153,255,0.7);
   display: inline-block;
-  width: 90%;
+  width: 100%;
   margin-top: 16px;
   /*animation: 2s ease 0s fade-in;*/
   /*-webkit-animation: 2s ease 0s fade-in;*/

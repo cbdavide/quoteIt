@@ -166,7 +166,7 @@ var Quote = React.createClass({
     return React.createElement(
       "div",
       { className: "quote", onClick: this.props.save.bind(null, this.props.text, this.props.author, this.props.id) },
-      React.createElement("span", { className: "fav icon-fav saved" }),
+      React.createElement("span", { className: "fav icon-fav" }),
       React.createElement(
         "div",
         { className: "text" },
