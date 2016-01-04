@@ -79,6 +79,7 @@ var Main = React.createClass({
         { className: 'content' },
         this.state.quotes.map(function (val) {
           return React.createElement(QuoteView, {
+            key: val.id,
             text: val.quoteText,
             author: val.quoteAuthor,
             id: val.id,
@@ -152,7 +153,7 @@ var Quote = React.createClass({
   render: function render() {
 
     return React.createElement(
-      "div",
+      "article",
       { className: "quote", onClick: this.props.save.bind(null, this.props.text, this.props.author, this.props.id) },
       React.createElement("span", { className: "fav icon-fav" }),
       React.createElement(

@@ -49,8 +49,8 @@ body {
   display: inline-block;
   width: 100%;
   margin-top: 16px;
-  /*animation: 2s ease 0s fade-in;*/
-  /*-webkit-animation: 2s ease 0s fade-in;*/
+  animation: 2s ease 0s fade-in;
+  -webkit-animation: 2s ease 0s fade-in;
 }
 
 .text {

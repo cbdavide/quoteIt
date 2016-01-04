@@ -62,6 +62,7 @@ var Main = React.createClass({
           {this.state.quotes.map( ( val ) => {
             return (
               <QuoteView
+                key={val.id}
                 text={val.quoteText}
                 author={val.quoteAuthor}
                 id={val.id}
