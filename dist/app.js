@@ -16,8 +16,15 @@ var Main = React.createClass({
   displayName: 'Main',
 
   getInitialState: function getInitialState() {
+
+    var le_quotes = model.getQuotes();
+
+    le_quotes.forEach(function (element) {
+      element.isSaved = true;
+    });
+
     return {
-      quotes: model.getQuotes()
+      quotes: le_quotes
     };
   },
 
@@ -37,6 +44,7 @@ var Main = React.createClass({
       _this.setState(function (old) {
         old.quotes.unshift({
           id: data.quoteLink,
+          isSaved: false,
           quoteText: data.quoteText,
           quoteAuthor: data.quoteAuthor
         });
@@ -61,6 +69,22 @@ var Main = React.createClass({
     } else {
       model.removeQuote(id);
     }
+
+    this.setState(function (old) {
+
+      var le_quotes = old.quotes;
+
+      for (var i = 0; i < le_quotes.length; i++) {
+        if (id === le_quotes[i].id) {
+          le_quotes[i].isSaved = !le_quotes[i].isSaved;
+          break;
+        }
+      }
+
+      return {
+        quotes: le_quotes
+      };
+    });
   },
 
   render: function render() {
@@ -72,7 +96,7 @@ var Main = React.createClass({
       React.createElement(
         'header',
         { className: 'header' },
-        React.createElement('span', { className: 'add icon-add', onClick: this.callQuote.bind(this) })
+        React.createElement('span', { className: 'add icon-add', onClick: this.callQuote })
       ),
       React.createElement(
         'section',
@@ -80,6 +104,7 @@ var Main = React.createClass({
         this.state.quotes.map(function (val) {
           return React.createElement(QuoteView, {
             key: val.id,
+            isSaved: val.isSaved,
             text: val.quoteText,
             author: val.quoteAuthor,
             id: val.id,
@@ -145,31 +170,92 @@ var QuoteModel = function QuoteModel() {
 module.exports = QuoteModel;
 
 },{}],4:[function(require,module,exports){
-"use strict";
+'use strict';
 
+var className = require('classnames');
 var Quote = React.createClass({
-  displayName: "Quote",
+  displayName: 'Quote',
 
   render: function render() {
 
+    var save = this.props.save,
+        text = this.props.text,
+        author = this.props.author,
+        key = this.props.id;
+
+    var classes = className({
+      'fav': true,
+      'icon-fav': this.props.isSaved
+    });
+
     return React.createElement(
-      "article",
-      { className: "quote", onClick: this.props.save.bind(null, this.props.text, this.props.author, this.props.id) },
-      React.createElement("span", { className: "fav icon-fav" }),
+      'article',
+      { className: 'quote', onClick: save.bind(null, text, author, key) },
+      React.createElement('span', { className: classes }),
       React.createElement(
-        "div",
-        { className: "text" },
-        this.props.text
+        'div',
+        { className: 'text' },
+        text
       ),
       React.createElement(
-        "span",
-        { className: "author" },
-        this.props.author
+        'span',
+        { className: 'author' },
+        author
       )
     );
   }
 });
 
 module.exports = Quote;
+
+},{"classnames":5}],5:[function(require,module,exports){
+/*!
+  Copyright (c) 2016 Jed Watson.
+  Licensed under the MIT License (MIT), see
+  http://jedwatson.github.io/classnames
+*/
+/* global define */
+
+(function () {
+	'use strict';
+
+	var hasOwn = {}.hasOwnProperty;
+
+	function classNames () {
+		var classes = [];
+
+		for (var i = 0; i < arguments.length; i++) {
+			var arg = arguments[i];
+			if (!arg) continue;
+
+			var argType = typeof arg;
+
+			if (argType === 'string' || argType === 'number') {
+				classes.push(arg);
+			} else if (Array.isArray(arg)) {
+				classes.push(classNames.apply(null, arg));
+			} else if (argType === 'object') {
+				for (var key in arg) {
+					if (hasOwn.call(arg, key) && arg[key]) {
+						classes.push(key);
+					}
+				}
+			}
+		}
+
+		return classes.join(' ');
+	}
+
+	if (typeof module !== 'undefined' && module.exports) {
+		module.exports = classNames;
+	} else if (typeof define === 'function' && typeof define.amd === 'object' && define.amd) {
+		// register as 'classnames', consistent with npm package name
+		define('classnames', [], function () {
+			return classNames;
+		});
+	} else {
+		window.classNames = classNames;
+	}
+}());
 
 },{}]},{},[1]);

@@ -6,8 +6,15 @@ var model = QuoteModel();
 var Main = React.createClass({
 
   getInitialState: function() {
+
+    let le_quotes = model.getQuotes();
+
+    le_quotes.forEach( (element) => {
+      element.isSaved = true;
+    });
+
     return {
-      quotes: model.getQuotes()
+      quotes: le_quotes
     }
   },
 
@@ -25,6 +32,7 @@ var Main = React.createClass({
       this.setState( function ( old ) {
         old.quotes.unshift( {
           id: data.quoteLink,
+          isSaved: false,
           quoteText: data.quoteText,
           quoteAuthor: data.quoteAuthor
         });
@@ -49,6 +57,25 @@ var Main = React.createClass({
     } else {
       model.removeQuote( id );
     }
+
+    this.setState( function( old ) {
+
+      let le_quotes = old.quotes;
+
+      for( let i=0; i<le_quotes.length; i++){
+        if( id === le_quotes[i].id ) {
+          le_quotes[i].isSaved = !le_quotes[i].isSaved;
+          break;
+        }
+      }
+
+      return {
+        quotes: le_quotes
+      }
+
+    });
+
+
   },
 
   render: function() {
@@ -56,13 +83,14 @@ var Main = React.createClass({
     return (
       <div>
         <header className="header">
-          <span className="add icon-add" onClick={this.callQuote.bind(this)}></span>
+          <span className="add icon-add" onClick={this.callQuote}></span>
         </header>
         <section className="content">
           {this.state.quotes.map( ( val ) => {
             return (
               <QuoteView
                 key={val.id}
+                isSaved={val.isSaved}
                 text={val.quoteText}
                 author={val.quoteAuthor}
                 id={val.id}

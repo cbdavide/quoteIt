@@ -1,15 +1,26 @@
+var className = require('classnames');
 var Quote = React.createClass({
 
   render: function() {
 
+    let save = this.props.save,
+        text = this.props.text,
+        author = this.props.author,
+        key = this.props.id;
+
+    let classes = className({
+      'fav': true,
+      'icon-fav': this.props.isSaved
+    });
+
     return (
-      <article className="quote" onClick={this.props.save.bind( null, this.props.text, this.props.author, this.props.id )}>
-        <span className="fav icon-fav"></span>
+      <article className="quote" onClick={save.bind( null, text, author, key )}>
+        <span className={classes}></span>
         <div className="text">
-          {this.props.text}
+          {text}
         </div>
         <span className="author">
-          {this.props.author}
+          {author}
         </span>
       </article>
     );
