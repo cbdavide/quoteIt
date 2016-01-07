@@ -119,7 +119,7 @@ var Main = React.createClass({
 module.exports = Main;
 
 },{"./model":3,"./quote":4}],3:[function(require,module,exports){
-"use strict";
+'use strict';
 
 var QuoteModel = function QuoteModel() {
 
@@ -139,11 +139,12 @@ var QuoteModel = function QuoteModel() {
     },
 
     getQuotes: function getQuotes() {
-      return JSON.parse(localStorage.quotes);;
+      var quotes = localStorage.quotes || '[]';
+      return JSON.parse(quotes);
     },
 
     isSaved: function isSaved(id) {
-      var model = JSON.parse(localStorage.quotes);
+      var model = this.getQuotes();
 
       for (var i = 0; i < model.length; i++) {
         if (model[i].id === id) {
@@ -154,13 +155,13 @@ var QuoteModel = function QuoteModel() {
     },
 
     saveQuote: function saveQuote(quote) {
-      var model = JSON.parse(localStorage.quotes);
+      var model = this.getQuotes();
       model.unshift(quote);
       this.updateModel(model);
     },
 
     removeQuote: function removeQuote(id) {
-      var model = JSON.parse(localStorage.quotes);
+      var model = this.getQuotes();
       model.splice(this.quoteIndex(id), 1);
       this.updateModel(model);
     }

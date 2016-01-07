@@ -17,11 +17,12 @@ var QuoteModel = function( ) {
     },
 
     getQuotes: function() {
-      return JSON.parse(localStorage.quotes);;
+      let quotes = localStorage.quotes || '[]';
+      return JSON.parse(quotes);
     },
 
     isSaved: function( id ) {
-      let model = JSON.parse(localStorage.quotes);
+      let model = this.getQuotes();
 
       for(var i=0; i<model.length; i++) {
         if( model[i].id === id ){
@@ -32,13 +33,13 @@ var QuoteModel = function( ) {
     },
 
     saveQuote: function( quote ) {
-      let model = JSON.parse(localStorage.quotes);
+      let model = this.getQuotes();
       model.unshift( quote );
       this.updateModel( model );
     },
 
     removeQuote: function( id ) {
-      let model = JSON.parse(localStorage.quotes);
+      let model = this.getQuotes();
       model.splice( this.quoteIndex( id ), 1 );
       this.updateModel( model );
     }
