@@ -1,0 +1,15 @@
+{
+  "name": "Quote It",
+  "description": "Read random quotes, and save the ones you like.",
+  "launch_path": "/index.html",
+  "icons": {
+    "60": "img/icons/icon_60x60.png",
+    "128": "img/icons/icon_128x128.png",
+    "256": "img/icons/icon_256x256.png"
+  },
+  "developer": {
+    "name": "David Castelblanco Benavides",
+    "url": "http://cbdavide.github.io/Quotes/"
+  },
+  "default_locale": "es"
+}
