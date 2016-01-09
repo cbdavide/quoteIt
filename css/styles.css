@@ -6,7 +6,6 @@ html{
 
 body {
   color: white;
-  font-family: 'Merriweather', serif;
   font-size: 16px;
   width: 100vw;
   height: 100vh;
@@ -21,26 +20,34 @@ body {
   position: fixed;
   width: 100%;
   background: rgba(0,0,0,0.8);
+  display: flex;
+}
+
+.title {
+  text-align: center;
+  font-weight: bold;
+  flex-grow: 200;
+  padding: 10px;
+  font-size: 20px;
 }
 
 .add {
   background: rgb(0,153,255);
-  float: right;
-  padding: 10px 16px;
+  padding: 18px;
   cursor: pointer;
+  flex-grow: 1;
+  text-align: center;
 }
 
 .content {
   width: 95%;
   margin: 0 auto;
-  padding-top: 30px;
+  padding-top: 50px;
   -webkit-column-count: 3;
   -webkit-column-gap: 16px;
 
   -moz-column-count: 3;
   -moz-column-gap: 16px;
-
-  /*width: 100%;*/
 }
 
 .quote {
@@ -54,7 +61,6 @@ body {
 }
 
 .text {
-  font-weight: bold;
   margin: 20px 14px 0px 14px;
 }
 
@@ -66,7 +72,6 @@ body {
 .author {
   display: block;
   text-align: right;
-  font-weight: bold;
   margin: 16px;
 }
 

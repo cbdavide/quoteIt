@@ -1,16 +1,4 @@
 @font-face {
-  font-family: 'Merriweather';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Merriweather'), url('../css/fonts/Merriweather-Regular.ttf') format('woff2');
-}
-@font-face {
-  font-family: 'Merriweather';
-  font-style: normal;
-  font-weight: 700;
-  src: local('Merriweather Bold'), local('Merriweather-Bold'), url('../css/fonts/Merriweather-Bold.ttf') format('woff2');
-}
-@font-face {
   font-family: 'icomoon';
   src:    url('../css/fonts/icomoon.eot?z7lp91');
   src:    url('../css/fonts/icomoon.eot?z7lp91#iefix') format('embedded-opentype'),
