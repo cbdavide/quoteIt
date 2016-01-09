@@ -1,4 +1,6 @@
-var QuoteModel = require( './model' ),
+var React = require('react'),
+    $ = require('jquery'),
+    QuoteModel = require( './model' ),
     QuoteView = require( './quote' );
 
 var model = QuoteModel();
@@ -83,6 +85,7 @@ var Main = React.createClass({
     return (
       <div>
         <header className="header">
+          <div className="title">Quote it</div>
           <span className="add icon-add" onClick={this.callQuote}></span>
         </header>
         <section className="content">

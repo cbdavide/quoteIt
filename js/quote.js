@@ -1,4 +1,5 @@
-var className = require('classnames');
+var React = require('react'),
+    className = require('classnames');
 var Quote = React.createClass({
 
   render: function() {
