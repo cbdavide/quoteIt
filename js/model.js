@@ -1,5 +1,3 @@
-var React = require('react');
-
 var QuoteModel = function( ) {
 
   return {
@@ -47,5 +45,3 @@ var QuoteModel = function( ) {
     }
   };
 }
-
-module.exports = QuoteModel;

@@ -1,5 +1,3 @@
-var React = require('react'),
-    className = require('classnames');
 var Quote = React.createClass({
 
   render: function() {
@@ -9,7 +7,7 @@ var Quote = React.createClass({
         author = this.props.author,
         key = this.props.id;
 
-    let classes = className({
+    let classes = classNames({
       'fav': true,
       'icon-fav': this.props.isSaved
     });
@@ -27,5 +25,3 @@ var Quote = React.createClass({
     );
   }
 });
-
-module.exports = Quote;

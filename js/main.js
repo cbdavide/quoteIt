@@ -1,8 +1,3 @@
-var React = require('react'),
-    $ = require('jquery'),
-    QuoteModel = require( './model' ),
-    QuoteView = require( './quote' );
-
 var model = QuoteModel();
 
 var Main = React.createClass({
@@ -91,7 +86,7 @@ var Main = React.createClass({
         <section className="content">
           {this.state.quotes.map( ( val ) => {
             return (
-              <QuoteView
+              <Quote
                 key={val.id}
                 isSaved={val.isSaved}
                 text={val.quoteText}
@@ -106,5 +101,3 @@ var Main = React.createClass({
     );
   }
 });
-
-module.exports = Main;
