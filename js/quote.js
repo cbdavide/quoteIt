@@ -9,7 +9,8 @@ var Quote = React.createClass({
 
     let classes = classNames({
       'fav': true,
-      'icon-fav': this.props.isSaved
+      'icon-fav': !this.props.isSaved,
+      'icon-fav-saved': this.props.isSaved
     });
 
     return (

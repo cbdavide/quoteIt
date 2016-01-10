@@ -51,10 +51,10 @@ footer {
 }
 
 .title {
-  font-family: 'Alegreya-BoldItalic';
   align-self: center;
   flex-grow: 200;
-  font-size: 25px;
+  font-size: 20px;
+  font-weight: bold;
   padding-left: 10px;
 }
 
@@ -94,7 +94,6 @@ footer {
 
 .fav {
   margin: 5px;
-
 }
 
 .quote-content {

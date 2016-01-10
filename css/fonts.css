@@ -1,10 +1,4 @@
 @font-face {
-  font-family: 'Alegreya-BoldItalic';
-  src: url('fonts/Alegreya-BoldItalic.ttf') format('truetype');
-  font-weight: bold;
-  font-style: italic;
-}
-@font-face {
   font-family: 'PatuaOne-Regular';
   src: url('fonts/PatuaOne-Regular.ttf') format('truetype');
   font-weight: normal;
@@ -36,14 +30,21 @@
 }
 
 .icon-fav::after {
-  color: #F5AB35;
+  color: rgba(255,255,255,0.5);
   font-size: 1.5em;
   content: "\e901";
   animation: 2s ease 0s star-fade-in;
   -webkit-animation: 2s ease 0s star-fade-in;
 }
+.icon-fav-saved::after {
+
+  color: #F5AB35;
+  font-size: 1.5em;
+  content: "\e901";
+  animation: 2s ease 0s star-saved-fade-in;
+  -webkit-animation: 2s ease 0s star-saved-fade-in;
+}
 .icon-add:before {
-  /*font-size: 1.5em;*/
   content: "\e900";
 }
 
@@ -52,10 +53,26 @@
     color: rgba(0,0,0,0);
   }
   to {
-    color: #F5AB35;
+    color: rgba(255,255,255,0.5);
   }
 }
 @-webkit-keyframes star-fade-in {
+  from {
+    color: rgba(0,0,0,0);
+  }
+  to {
+    color: rgba(255,255,255,0.5);
+  }
+}
+@keyframes star-saved-fade-in {
+  from {
+    color: rgba(0,0,0,0);
+  }
+  to {
+    color: #F5AB35;
+  }
+}
+@-webkit-keyframes star-saved-fade-in {
   from {
     color: rgba(0,0,0,0);
   }
