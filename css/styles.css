@@ -23,11 +23,15 @@ body {
   display: flex;
 }
 
+.logo {
+  padding-left: 10px;
+}
+
 .title {
+  align-self: center;
   text-align: center;
   font-weight: bold;
   flex-grow: 200;
-  padding: 10px;
   font-size: 20px;
 }
 

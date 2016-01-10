@@ -86,6 +86,7 @@ var Main = React.createClass({
       React.createElement(
         'header',
         { className: 'header' },
+        React.createElement('img', { className: 'logo ', src: 'dist/img/logo.svg', width: '40px' }),
         React.createElement(
           'div',
           { className: 'title' },

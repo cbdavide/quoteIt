@@ -80,6 +80,7 @@ var Main = React.createClass({
     return (
       <div>
         <header className="header">
+          <img className="logo "src="dist/img/logo.svg" width="40px"/>
           <div className="title">Quote it</div>
           <span className="add icon-add" onClick={this.callQuote}></span>
         </header>
