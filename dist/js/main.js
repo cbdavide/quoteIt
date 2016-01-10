@@ -14,7 +14,8 @@ var Main = React.createClass({
     });
 
     return {
-      quotes: le_quotes
+      quotes: le_quotes,
+      thanks: true
     };
   },
 
@@ -77,6 +78,14 @@ var Main = React.createClass({
     });
   },
 
+  toggleThanks: function toggleThanks() {
+    this.setState(function (old) {
+      return {
+        thanks: !old.thanks
+      };
+    });
+  },
+
   render: function render() {
     var _this2 = this;
 
@@ -86,7 +95,7 @@ var Main = React.createClass({
       React.createElement(
         'header',
         { className: 'header' },
-        React.createElement('img', { className: 'logo ', src: 'dist/img/logo.svg', width: '40px' }),
+        React.createElement('img', { className: 'logo ', src: 'dist/img/logo.svg', width: '40px', onClick: this.toggleThanks }),
         React.createElement(
           'div',
           { className: 'title' },
@@ -107,6 +116,23 @@ var Main = React.createClass({
             save: _this2.saveQuote
           });
         })
+      ),
+      React.createElement(
+        'footer',
+        {
+          className: classNames({ hidden: this.state.thanks }),
+          onClick: this.toggleThanks },
+        React.createElement(
+          'div',
+          null,
+          'Thanks to ',
+          React.createElement(
+            'strong',
+            null,
+            'forismatic.com'
+          ),
+          ' for the quotes.'
+        )
       )
     );
   }

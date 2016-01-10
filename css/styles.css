@@ -19,11 +19,33 @@ body {
 .header {
   position: fixed;
   width: 100%;
-  background: rgba(0,0,0,0.8);
+  background: rgba(0,0,0,0.9);
   display: flex;
 }
 
+footer {
+  cursor: pointer;
+  background: rgba(0,0,0,0.9);
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  margin: auto;
+  width: 50%;
+  height: 100px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+  footer div {
+    align-self: center;
+    text-align: center;
+    margin: 0px 10px;
+  }
+
 .logo {
+  cursor: pointer;
   padding-left: 10px;
 }
 
@@ -92,6 +114,9 @@ body {
   }
   .placeholder {
     font-size: 1.6em;
+  }
+  footer {
+    width: 90%;
   }
 }
 

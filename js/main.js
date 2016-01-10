@@ -11,7 +11,8 @@ var Main = React.createClass({
     });
 
     return {
-      quotes: le_quotes
+      quotes: le_quotes,
+      thanks: true
     }
   },
 
@@ -75,12 +76,20 @@ var Main = React.createClass({
 
   },
 
+  toggleThanks: function(){
+    this.setState( function( old ) {
+      return {
+        thanks: !old.thanks
+      }
+    });
+  },
+
   render: function() {
 
     return (
       <div>
         <header className="header">
-          <img className="logo "src="dist/img/logo.svg" width="40px"/>
+          <img className="logo "src="dist/img/logo.svg" width="40px" onClick={this.toggleThanks}/>
           <div className="title">Quote it</div>
           <span className="add icon-add" onClick={this.callQuote}></span>
         </header>
@@ -98,6 +107,14 @@ var Main = React.createClass({
             )
           })}
         </section>
+        <footer
+          className={classNames({hidden: this.state.thanks})}
+          onClick={this.toggleThanks} >
+
+          <div>
+            Thanks to <strong>forismatic.com</strong> for the quotes.
+          </div>
+        </footer>
       </div>
     );
   }
