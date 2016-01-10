@@ -5,6 +5,7 @@ html{
 }
 
 body {
+  font-family: 'PatuaOne-Regular';
   color: white;
   font-size: 16px;
   width: 100vw;
@@ -50,11 +51,11 @@ footer {
 }
 
 .title {
+  font-family: 'Alegreya-BoldItalic';
   align-self: center;
-  text-align: center;
-  font-weight: bold;
   flex-grow: 200;
-  font-size: 20px;
+  font-size: 25px;
+  padding-left: 10px;
 }
 
 .add {
@@ -86,23 +87,31 @@ footer {
   -webkit-animation: 2s ease 0s fade-in;
 }
 
-.text {
-  margin: 20px 14px 0px 14px;
+.options {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .fav {
-  float: right;
-  margin: 10px;
+  margin: 5px;
+
+}
+
+.quote-content {
+  padding: 0px 20px 10px 20px;
+}
+
+.text {
+  text-align: center;
 }
 
 .author {
-  display: block;
+  margin-top: 10px;
   text-align: right;
-  margin: 16px;
 }
 
 .author::before {
-  content: '—';
+  content: '— ';
 }
 
 @media only screen and (max-width: 640px) {

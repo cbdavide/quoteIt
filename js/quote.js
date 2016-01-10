@@ -14,13 +14,17 @@ var Quote = React.createClass({
 
     return (
       <article className="quote" onClick={save.bind( null, text, author, key )}>
-        <span className={classes}></span>
-        <div className="text">
-          {text}
+        <div className="options">
+          <span className={classes}></span>
         </div>
-        <span className="author">
-          {author}
-        </span>
+        <div className="quote-content">
+          <div className="text">
+            {text}
+          </div>
+          <div className="author">
+            {author}
+          </div>
+        </div>
       </article>
     );
   }

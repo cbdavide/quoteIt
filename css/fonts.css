@@ -1,4 +1,16 @@
 @font-face {
+  font-family: 'Alegreya-BoldItalic';
+  src: url('fonts/Alegreya-BoldItalic.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'PatuaOne-Regular';
+  src: url('fonts/PatuaOne-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
   font-family: 'icomoon';
   src:    url('fonts/icomoon.eot?z7lp91');
   src:    url('fonts/icomoon.eot?z7lp91#iefix') format('embedded-opentype'),

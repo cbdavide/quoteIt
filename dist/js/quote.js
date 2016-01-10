@@ -18,16 +18,24 @@ var Quote = React.createClass({
     return React.createElement(
       'article',
       { className: 'quote', onClick: save.bind(null, text, author, key) },
-      React.createElement('span', { className: classes }),
       React.createElement(
         'div',
-        { className: 'text' },
-        text
+        { className: 'options' },
+        React.createElement('span', { className: classes })
       ),
       React.createElement(
-        'span',
-        { className: 'author' },
-        author
+        'div',
+        { className: 'quote-content' },
+        React.createElement(
+          'div',
+          { className: 'text' },
+          text
+        ),
+        React.createElement(
+          'div',
+          { className: 'author' },
+          author
+        )
       )
     );
   }
