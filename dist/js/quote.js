@@ -11,7 +11,7 @@ var Quote = React.createClass({
         key = this.props.id;
 
     var classes = classNames({
-      'fav': true,
+      'options__fav': true,
       'icon-fav': !this.props.isSaved,
       'icon-fav-saved': this.props.isSaved
     });
@@ -21,20 +21,20 @@ var Quote = React.createClass({
       { className: 'quote', onClick: save.bind(null, text, author, key) },
       React.createElement(
         'div',
-        { className: 'options' },
+        { className: 'quote__options' },
         React.createElement('span', { className: classes })
       ),
       React.createElement(
         'div',
-        { className: 'quote-content' },
+        { className: 'quote__content' },
         React.createElement(
           'div',
-          { className: 'text' },
+          { className: 'content__text' },
           text
         ),
         React.createElement(
           'div',
-          { className: 'author' },
+          { className: 'content__author' },
           author
         )
       )

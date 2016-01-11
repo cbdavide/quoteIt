@@ -86,14 +86,19 @@ var Main = React.createClass({
 
   render: function() {
 
+    let popupClasses = classNames({
+      'popup': true,
+      'popup-hidden': this.state.thanks
+    });
+
     return (
       <div>
         <header className="header">
-          <img className="logo "src="dist/img/logo.svg" width="40px" onClick={this.toggleThanks}/>
-          <div className="title">Quote it</div>
-          <span className="add icon-add" onClick={this.callQuote}></span>
+          <img className="header__logo "src="dist/img/logo.svg" width="40px" onClick={this.toggleThanks}/>
+          <div className="header__title">Quote it</div>
+          <span className="header__add icon-add" onClick={this.callQuote}></span>
         </header>
-        <section className="content">
+        <section className="quotes">
           {this.state.quotes.map( ( val ) => {
             return (
               <Quote
@@ -107,14 +112,14 @@ var Main = React.createClass({
             )
           })}
         </section>
-        <footer
-          className={classNames({hidden: this.state.thanks})}
+        <section
+          className={popupClasses}
           onClick={this.toggleThanks} >
 
-          <div>
+          <div className="popup__content">
             Thanks to <strong>forismatic.com</strong> for the quotes.
           </div>
-        </footer>
+        </section>
       </div>
     );
   }

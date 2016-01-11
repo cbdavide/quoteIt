@@ -89,23 +89,28 @@ var Main = React.createClass({
   render: function render() {
     var _this2 = this;
 
+    var popupClasses = classNames({
+      'popup': true,
+      'popup-hidden': this.state.thanks
+    });
+
     return React.createElement(
       'div',
       null,
       React.createElement(
         'header',
         { className: 'header' },
-        React.createElement('img', { className: 'logo ', src: 'dist/img/logo.svg', width: '40px', onClick: this.toggleThanks }),
+        React.createElement('img', { className: 'header__logo ', src: 'dist/img/logo.svg', width: '40px', onClick: this.toggleThanks }),
         React.createElement(
           'div',
-          { className: 'title' },
+          { className: 'header__title' },
           'Quote it'
         ),
-        React.createElement('span', { className: 'add icon-add', onClick: this.callQuote })
+        React.createElement('span', { className: 'header__add icon-add', onClick: this.callQuote })
       ),
       React.createElement(
         'section',
-        { className: 'content' },
+        { className: 'quotes' },
         this.state.quotes.map(function (val) {
           return React.createElement(Quote, {
             key: val.id,
@@ -118,13 +123,13 @@ var Main = React.createClass({
         })
       ),
       React.createElement(
-        'footer',
+        'section',
         {
-          className: classNames({ hidden: this.state.thanks }),
+          className: popupClasses,
           onClick: this.toggleThanks },
         React.createElement(
           'div',
-          null,
+          { className: 'popup__content' },
           'Thanks to ',
           React.createElement(
             'strong',
