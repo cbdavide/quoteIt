@@ -12,7 +12,8 @@ var Main = React.createClass({
 
     return {
       quotes: le_quotes,
-      thanks: true
+      thanks: true,
+      internet_warning: true,
     }
   },
 
@@ -38,8 +39,12 @@ var Main = React.createClass({
           quotes: old.quotes
         }
       });
-    }).fail(function(err) {
-      console.log('Err -> Quote did not arrive :c');
+    }).fail( ( err ) => {
+      this.setState( function( old ) {
+        return {
+          internet_warning: false
+        };
+      });
     });
   },
 
@@ -84,11 +89,24 @@ var Main = React.createClass({
     });
   },
 
+  removeInternetWarning: function() {
+    this.setState( function( old ) {
+      return {
+        internet_warning: true
+      }
+    });
+  },
+
   render: function() {
 
     let popupClasses = classNames({
       'popup': true,
       'popup-hidden': this.state.thanks
+    });
+
+    let warningClasses = classNames({
+      'popup': true,
+      'popup-hidden': this.state.internet_warning
     });
 
     return (
@@ -112,12 +130,14 @@ var Main = React.createClass({
             )
           })}
         </section>
-        <section
-          className={popupClasses}
-          onClick={this.toggleThanks} >
-
+        <section className={popupClasses}  onClick={this.toggleThanks} >
           <div className="popup__content">
             Thanks to <strong>forismatic.com</strong> for the quotes.
+          </div>
+        </section>
+        <section className={warningClasses}  onClick={this.removeInternetWarning} >
+          <div className="popup__content">
+            Check if you are connected to internet.
           </div>
         </section>
       </div>

@@ -15,7 +15,8 @@ var Main = React.createClass({
 
     return {
       quotes: le_quotes,
-      thanks: true
+      thanks: true,
+      internet_warning: true
     };
   },
 
@@ -44,6 +45,11 @@ var Main = React.createClass({
         };
       });
     }).fail(function (err) {
+      _this.setState(function (old) {
+        return {
+          internet_warning: false
+        };
+      });
       console.log('Err -> Quote did not arrive :c');
     });
   },
@@ -86,12 +92,25 @@ var Main = React.createClass({
     });
   },
 
+  removeInternetWarning: function removeInternetWarning() {
+    this.setState(function (old) {
+      return {
+        internet_warning: true
+      };
+    });
+  },
+
   render: function render() {
     var _this2 = this;
 
     var popupClasses = classNames({
       'popup': true,
       'popup-hidden': this.state.thanks
+    });
+
+    var warningClasses = classNames({
+      'popup': true,
+      'popup-hidden': this.state.internet_warning
     });
 
     return React.createElement(
@@ -124,9 +143,7 @@ var Main = React.createClass({
       ),
       React.createElement(
         'section',
-        {
-          className: popupClasses,
-          onClick: this.toggleThanks },
+        { className: popupClasses, onClick: this.toggleThanks },
         React.createElement(
           'div',
           { className: 'popup__content' },
@@ -137,6 +154,15 @@ var Main = React.createClass({
             'forismatic.com'
           ),
           ' for the quotes.'
+        )
+      ),
+      React.createElement(
+        'section',
+        { className: warningClasses, onClick: this.removeInternetWarning },
+        React.createElement(
+          'div',
+          { className: 'popup__content' },
+          'Check if you are connected to internet.'
         )
       )
     );
