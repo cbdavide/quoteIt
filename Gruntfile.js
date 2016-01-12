@@ -10,6 +10,7 @@ module.exports = function( grunt ) {
           "dist/js/app.js": "js/app.js",
           "dist/js/main.js": "js/main.js",
           "dist/js/quote.js": "js/quote.js",
+          "dist/js/message.js": "js/message.js",
           "dist/js/model.js": "js/model.js"
         }
       }

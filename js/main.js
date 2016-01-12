@@ -77,8 +77,6 @@ var Main = React.createClass({
       }
 
     });
-
-
   },
 
   toggleThanks: function(){
@@ -98,16 +96,6 @@ var Main = React.createClass({
   },
 
   render: function() {
-
-    let popupClasses = classNames({
-      'popup': true,
-      'popup-hidden': this.state.thanks
-    });
-
-    let warningClasses = classNames({
-      'popup': true,
-      'popup-hidden': this.state.internet_warning
-    });
 
     return (
       <div>
@@ -130,16 +118,16 @@ var Main = React.createClass({
             )
           })}
         </section>
-        <section className={popupClasses}  onClick={this.toggleThanks} >
-          <div className="popup__content">
-            Thanks to <strong>forismatic.com</strong> for the quotes.
-          </div>
-        </section>
-        <section className={warningClasses}  onClick={this.removeInternetWarning} >
-          <div className="popup__content">
-            Check if you are connected to internet.
-          </div>
-        </section>
+        <Message
+          handler={this.toggleThanks}
+          hidden={this.state.thanks}
+          text="Thanks to forismatic.com for the quotes."
+        />
+        <Message
+          handler={this.removeInternetWarning}
+          hidden={this.state.internet_warning}
+          text="Check if you are connected to internet."
+        />
       </div>
     );
   }
