@@ -1,20 +1,24 @@
+var app = app || {};
 
-var Message = React.createClass( {
+( function() {
+  
+  app.Message = React.createClass( {
 
-  render: function() {
+    render: function() {
 
-    let classes = classNames({
-      'message': true,
-      'message-hidden': this.props.hidden
-    });
+      let classes = classNames({
+        'message': true,
+        'message-hidden': this.props.hidden
+      });
 
-    return (
-      <section className={classes}  onClick={this.props.handler} >
-        <div className="message__content">
-          {this.props.text}
-        </div>
-      </section>
-    );
-  }
+      return (
+        <section className={classes}  onClick={this.props.handler} >
+          <div className="message__content">
+            {this.props.text}
+          </div>
+        </section>
+      );
+    }
 
-});
+  });
+})();

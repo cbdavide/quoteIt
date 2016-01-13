@@ -1,3 +1,10 @@
 'use strict';
 
-ReactDOM.render(React.createElement(Main, null), document.getElementById('continer'));
+var app = app || {};
+
+(function () {
+
+  var Main = app.Main;
+
+  ReactDOM.render(React.createElement(Main, null), document.getElementById('continer'));
+})();

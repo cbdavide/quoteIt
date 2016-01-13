@@ -1,134 +1,141 @@
-var model = QuoteModel();
+var app = app || {};
 
-var Main = React.createClass({
+( function() {
 
-  getInitialState: function() {
+  let Quote = app.Quote,
+      Message = app.Message,
+      model = app.QuoteModel();
 
-    let le_quotes = model.getQuotes();
+  app.Main = React.createClass({
 
-    le_quotes.forEach( (element) => {
-      element.isSaved = true;
-    });
+    getInitialState: function() {
 
-    return {
-      quotes: le_quotes,
-      thanks: true,
-      internet_warning: true,
-    }
-  },
+      let le_quotes = model.getQuotes();
 
-  callQuote: function() {
-    $.ajax({
-      url: 'http://api.forismatic.com/api/1.0/',
-      jsonp: 'jsonp',
-      dataType: 'jsonp',
-      data : {
-        method: 'getQuote',
-        lang: 'en',
-        format: 'jsonp'
-      }
-    }).done(( data ) => {
-      this.setState( function ( old ) {
-        old.quotes.unshift( {
-          id: data.quoteLink,
-          isSaved: false,
-          quoteText: data.quoteText,
-          quoteAuthor: data.quoteAuthor
-        });
-        return {
-          quotes: old.quotes
-        }
+      le_quotes.forEach( (element) => {
+        element.isSaved = true;
       });
-    }).fail( ( err ) => {
+
+      return {
+        quotes: le_quotes,
+        thanks: true,
+        internet_warning: true,
+      }
+    },
+
+    callQuote: function() {
+      $.ajax({
+        url: 'http://api.forismatic.com/api/1.0/',
+        jsonp: 'jsonp',
+        dataType: 'jsonp',
+        data : {
+          method: 'getQuote',
+          lang: 'en',
+          format: 'jsonp'
+        }
+      }).done(( data ) => {
+        this.setState( function ( old ) {
+          old.quotes.unshift( {
+            id: data.quoteLink,
+            isSaved: false,
+            quoteText: data.quoteText,
+            quoteAuthor: data.quoteAuthor
+          });
+          return {
+            quotes: old.quotes
+          }
+        });
+      }).fail( ( err ) => {
+        this.setState( function( old ) {
+          return {
+            internet_warning: false
+          };
+        });
+      });
+    },
+
+    saveQuote: function( text, author, id ) {
+
+      if( !model.isSaved( id ) ) {
+
+        model.saveQuote( {
+          id: id,
+          quoteText: text,
+          quoteAuthor: author
+        });
+      } else {
+        model.removeQuote( id );
+      }
+
+      this.setState( function( old ) {
+
+        let le_quotes = old.quotes;
+
+        for( let i=0; i<le_quotes.length; i++){
+          if( id === le_quotes[i].id ) {
+            le_quotes[i].isSaved = !le_quotes[i].isSaved;
+            break;
+          }
+        }
+
+        return {
+          quotes: le_quotes
+        }
+
+      });
+    },
+
+    toggleThanks: function(){
       this.setState( function( old ) {
         return {
-          internet_warning: false
-        };
-      });
-    });
-  },
-
-  saveQuote: function( text, author, id ) {
-
-    if( !model.isSaved( id ) ) {
-
-      model.saveQuote( {
-        id: id,
-        quoteText: text,
-        quoteAuthor: author
-      });
-    } else {
-      model.removeQuote( id );
-    }
-
-    this.setState( function( old ) {
-
-      let le_quotes = old.quotes;
-
-      for( let i=0; i<le_quotes.length; i++){
-        if( id === le_quotes[i].id ) {
-          le_quotes[i].isSaved = !le_quotes[i].isSaved;
-          break;
+          thanks: !old.thanks
         }
-      }
+      });
+    },
 
-      return {
-        quotes: le_quotes
-      }
+    removeInternetWarning: function() {
+      this.setState( function( old ) {
+        return {
+          internet_warning: true
+        }
+      });
+    },
 
-    });
-  },
+    render: function() {
 
-  toggleThanks: function(){
-    this.setState( function( old ) {
-      return {
-        thanks: !old.thanks
-      }
-    });
-  },
-
-  removeInternetWarning: function() {
-    this.setState( function( old ) {
-      return {
-        internet_warning: true
-      }
-    });
-  },
-
-  render: function() {
-
-    return (
-      <div>
-        <header className="header">
-          <img className="header__logo "src="dist/img/logo.svg" width="40px" onClick={this.toggleThanks}/>
-          <div className="header__title">Quote it</div>
-          <span className="header__add icon-add" onClick={this.callQuote}></span>
-        </header>
-        <section className="quotes">
-          {this.state.quotes.map( ( val ) => {
-            return (
-              <Quote
-                key={val.id}
-                isSaved={val.isSaved}
-                text={val.quoteText}
-                author={val.quoteAuthor}
-                id={val.id}
-                save = {this.saveQuote}
-              />
-            )
-          })}
-        </section>
-        <Message
-          handler={this.toggleThanks}
-          hidden={this.state.thanks}
-          text="Thanks to forismatic.com for the quotes."
-        />
-        <Message
-          handler={this.removeInternetWarning}
-          hidden={this.state.internet_warning}
-          text="Check if you are connected to internet."
-        />
-      </div>
-    );
-  }
-});
+      return (
+        <div>
+          <header className="header">
+            <img className="header__logo "src="dist/img/logo.svg" width="40px" onClick={this.toggleThanks}/>
+            <div className="header__title">Quote it</div>
+            <span className="header__add icon-add" onClick={this.callQuote}></span>
+          </header>
+          <section className="quotes">
+            {this.state.quotes.map( ( val ) => {
+              return (
+                <Quote
+                  key={val.id}
+                  isSaved={val.isSaved}
+                  text={val.quoteText}
+                  author={val.quoteAuthor}
+                  id={val.id}
+                  save = {this.saveQuote}
+                />
+              )
+            })}
+          </section>
+          <Message
+            handler={this.toggleThanks}
+            hidden={this.state.thanks}
+            text="Thanks to forismatic.com for the quotes."
+          />
+          <Message
+            handler={this.removeInternetWarning}
+            hidden={this.state.internet_warning}
+            text="Check if you are connected to internet."
+          />
+        </div>
+      );
+    }
+  });
+})();

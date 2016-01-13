@@ -1,47 +1,53 @@
-var QuoteModel = function( ) {
+var app = app || {};
 
-  return {
+( function() {
 
-    updateModel: function( quotes ) {
-      localStorage.quotes = JSON.stringify( quotes );
-    },
+  app.QuoteModel = function( ) {
 
-    quoteIndex: function( id ) {
-      let model = JSON.parse(localStorage.quotes);
+    return {
 
-      for(var i=0; i<model.length; i++) {
-        if( model[i].id == id )
-          return i;
-      }
-      return -1;
-    },
+      updateModel: function( quotes ) {
+        localStorage.quotes = JSON.stringify( quotes );
+      },
 
-    getQuotes: function() {
-      let quotes = localStorage.quotes || '[]';
-      return JSON.parse(quotes);
-    },
+      quoteIndex: function( id ) {
+        let model = JSON.parse(localStorage.quotes);
 
-    isSaved: function( id ) {
-      let model = this.getQuotes();
-
-      for(var i=0; i<model.length; i++) {
-        if( model[i].id === id ){
-          return true;
+        for(var i=0; i<model.length; i++) {
+          if( model[i].id == id )
+            return i;
         }
+        return -1;
+      },
+
+      getQuotes: function() {
+        let quotes = localStorage.quotes || '[]';
+        return JSON.parse(quotes);
+      },
+
+      isSaved: function( id ) {
+        let model = this.getQuotes();
+
+        for(var i=0; i<model.length; i++) {
+          if( model[i].id === id ){
+            return true;
+          }
+        }
+        return false;
+      },
+
+      saveQuote: function( quote ) {
+        let model = this.getQuotes();
+        model.unshift( quote );
+        this.updateModel( model );
+      },
+
+      removeQuote: function( id ) {
+        let model = this.getQuotes();
+        model.splice( this.quoteIndex( id ), 1 );
+        this.updateModel( model );
       }
-      return false;
-    },
-
-    saveQuote: function( quote ) {
-      let model = this.getQuotes();
-      model.unshift( quote );
-      this.updateModel( model );
-    },
-
-    removeQuote: function( id ) {
-      let model = this.getQuotes();
-      model.splice( this.quoteIndex( id ), 1 );
-      this.updateModel( model );
-    }
+    };
   };
-}
+
+})();

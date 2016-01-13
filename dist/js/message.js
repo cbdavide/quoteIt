@@ -1,24 +1,29 @@
 'use strict';
 
-var Message = React.createClass({
-  displayName: 'Message',
+var app = app || {};
 
-  render: function render() {
+(function () {
 
-    var classes = classNames({
-      'message': true,
-      'message-hidden': this.props.hidden
-    });
+  app.Message = React.createClass({
+    displayName: 'Message',
 
-    return React.createElement(
-      'section',
-      { className: classes, onClick: this.props.handler },
-      React.createElement(
-        'div',
-        { className: 'message__content' },
-        this.props.text
-      )
-    );
-  }
+    render: function render() {
 
-});
+      var classes = classNames({
+        'message': true,
+        'message-hidden': this.props.hidden
+      });
+
+      return React.createElement(
+        'section',
+        { className: classes, onClick: this.props.handler },
+        React.createElement(
+          'div',
+          { className: 'message__content' },
+          this.props.text
+        )
+      );
+    }
+
+  });
+})();
