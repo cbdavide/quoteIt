@@ -108,7 +108,7 @@ var Main = React.createClass({
       ),
       React.createElement(
         'section',
-        { className: 'content' },
+        { className: 'quotes' },
         this.state.quotes.map(function (val) {
           return React.createElement(QuoteView, {
             key: val.id,
@@ -193,23 +193,32 @@ var Quote = React.createClass({
         key = this.props.id;
 
     var classes = className({
-      'fav': true,
-      'icon-fav': this.props.isSaved
+      'options__fav': true,
+      'icon-fav': !this.props.isSaved,
+      'icon-fav-saved': this.props.isSaved
     });
 
     return React.createElement(
       'article',
       { className: 'quote', onClick: save.bind(null, text, author, key) },
-      React.createElement('span', { className: classes }),
       React.createElement(
         'div',
-        { className: 'text' },
-        text
+        { className: 'quote__options' },
+        React.createElement('span', { className: classes })
       ),
       React.createElement(
-        'span',
-        { className: 'author' },
-        author
+        'div',
+        { className: 'quote__content' },
+        React.createElement(
+          'div',
+          { className: 'content__text' },
+          text
+        ),
+        React.createElement(
+          'div',
+          { className: 'content__author' },
+          author
+        )
       )
     );
   }

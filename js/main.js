@@ -89,7 +89,7 @@ var Main = React.createClass({
           <div className="header__title">Quote it</div>
           <span className="header__add icon-add" onClick={this.callQuote}></span>
         </header>
-        <section className="content">
+        <section className="quotes">
           {this.state.quotes.map( ( val ) => {
             return (
               <QuoteView

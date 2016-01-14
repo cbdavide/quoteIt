@@ -9,19 +9,24 @@ var Quote = React.createClass({
         key = this.props.id;
 
     let classes = className({
-      'fav': true,
-      'icon-fav': this.props.isSaved
+      'options__fav': true,
+      'icon-fav': !this.props.isSaved,
+      'icon-fav-saved': this.props.isSaved
     });
 
     return (
       <article className="quote" onClick={save.bind( null, text, author, key )}>
-        <span className={classes}></span>
-        <div className="text">
-          {text}
+        <div className="quote__options">
+          <span className={classes}></span>
         </div>
-        <span className="author">
-          {author}
-        </span>
+        <div className="quote__content">
+          <div className="content__text">
+            {text}
+          </div>
+          <div className="content__author">
+            {author}
+          </div>
+        </div>
       </article>
     );
   }
