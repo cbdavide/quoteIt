@@ -78,12 +78,16 @@ var Main = React.createClass({
 
   },
 
+  toggleThanks: function(){},
+
   render: function() {
 
     return (
       <div>
         <header className="header">
-          <span className="add icon-add" onClick={this.callQuote}></span>
+          <img className="header__logo "src="dist/img/logo.svg" width="40px" onClick={this.toggleThanks}/>
+          <div className="header__title">Quote it</div>
+          <span className="header__add icon-add" onClick={this.callQuote}></span>
         </header>
         <section className="content">
           {this.state.quotes.map( ( val ) => {

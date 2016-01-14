@@ -18,22 +18,38 @@ body {
 }
 
 .header {
+  display: flex;
   position: fixed;
   width: 100%;
-  background: rgba(0,0,0,0.8);
+  height: 50px;
+  background: rgba(0,0,0,0.9);
 }
 
-.add {
-  background: rgb(0,153,255);
-  float: right;
-  padding: 10px 16px;
-  cursor: pointer;
-}
+  .header__logo {
+    cursor: pointer;
+    padding-left: 10px;
+  }
+
+  .header__title {
+    align-self: center;
+    flex-grow: 200;
+    font-size: 20px;
+    font-weight: bold;
+    padding-left: 10px;
+  }
+
+  .header__add {
+    background: rgb(0,153,255);
+    padding: 18px;
+    cursor: pointer;
+    flex-grow: 1;
+    text-align: center;
+  }
 
 .content {
   width: 95%;
   margin: 0 auto;
-  padding-top: 30px;
+  padding-top: 50px;
   -webkit-column-count: 3;
   -webkit-column-gap: 16px;
 

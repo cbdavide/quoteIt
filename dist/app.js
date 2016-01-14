@@ -87,6 +87,8 @@ var Main = React.createClass({
     });
   },
 
+  toggleThanks: function toggleThanks() {},
+
   render: function render() {
     var _this2 = this;
 
@@ -96,7 +98,13 @@ var Main = React.createClass({
       React.createElement(
         'header',
         { className: 'header' },
-        React.createElement('span', { className: 'add icon-add', onClick: this.callQuote })
+        React.createElement('img', { className: 'header__logo ', src: 'dist/img/logo.svg', width: '40px', onClick: this.toggleThanks }),
+        React.createElement(
+          'div',
+          { className: 'header__title' },
+          'Quote it'
+        ),
+        React.createElement('span', { className: 'header__add icon-add', onClick: this.callQuote })
       ),
       React.createElement(
         'section',
