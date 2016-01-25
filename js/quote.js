@@ -3,10 +3,7 @@ var Quote = React.createClass({
 
   render: function() {
 
-    let save = this.props.save,
-        text = this.props.text,
-        author = this.props.author,
-        key = this.props.id;
+    let { save, text, author, key} = this.props;
 
     let classes = className({
       'options__fav': true,

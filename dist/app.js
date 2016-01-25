@@ -186,11 +186,11 @@ var Quote = React.createClass({
   displayName: 'Quote',
 
   render: function render() {
-
-    var save = this.props.save,
-        text = this.props.text,
-        author = this.props.author,
-        key = this.props.id;
+    var _props = this.props;
+    var save = _props.save;
+    var text = _props.text;
+    var author = _props.author;
+    var key = _props.key;
 
     var classes = className({
       'options__fav': true,
