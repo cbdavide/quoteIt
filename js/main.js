@@ -62,11 +62,11 @@ var Main = React.createClass({
 
       let le_quotes = old.quotes;
 
-      for( let i=0; i<le_quotes.length; i++){
-        if( id === le_quotes[i].id ) {
-          le_quotes[i].isSaved = !le_quotes[i].isSaved;
-          break;
-        }
+      for(let quote of le_quotes) {
+          if(id == quote.id){
+              quote.isSaved = !quote.isSaved;
+              break;
+          }
       }
 
       return {

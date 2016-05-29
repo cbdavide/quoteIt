@@ -3,7 +3,7 @@ var Quote = React.createClass({
 
   render: function() {
 
-    let { save, text, author, key} = this.props;
+    let {save, text, author, id} = this.props;
 
     let classes = className({
       'options__fav': true,
@@ -12,7 +12,7 @@ var Quote = React.createClass({
     });
 
     return (
-      <article className="quote" onClick={save.bind( null, text, author, key )}>
+      <article className="quote" onClick={save.bind( null, text, author, id )}>
         <div className="quote__options">
           <span className={classes}></span>
         </div>

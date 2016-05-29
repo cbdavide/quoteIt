@@ -15,6 +15,7 @@ var model = QuoteModel();
 var Main = React.createClass({
   displayName: 'Main',
 
+
   getInitialState: function getInitialState() {
 
     var le_quotes = model.getQuotes();
@@ -74,10 +75,31 @@ var Main = React.createClass({
 
       var le_quotes = old.quotes;
 
-      for (var i = 0; i < le_quotes.length; i++) {
-        if (id === le_quotes[i].id) {
-          le_quotes[i].isSaved = !le_quotes[i].isSaved;
-          break;
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = le_quotes[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var quote = _step.value;
+
+          if (id == quote.id) {
+            quote.isSaved = !quote.isSaved;
+            break;
+          }
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
         }
       }
 
@@ -185,12 +207,14 @@ var className = require('classnames');
 var Quote = React.createClass({
   displayName: 'Quote',
 
+
   render: function render() {
     var _props = this.props;
     var save = _props.save;
     var text = _props.text;
     var author = _props.author;
-    var key = _props.key;
+    var id = _props.id;
+
 
     var classes = className({
       'options__fav': true,
@@ -200,7 +224,7 @@ var Quote = React.createClass({
 
     return React.createElement(
       'article',
-      { className: 'quote', onClick: save.bind(null, text, author, key) },
+      { className: 'quote', onClick: save.bind(null, text, author, id) },
       React.createElement(
         'div',
         { className: 'quote__options' },
